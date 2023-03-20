@@ -1,4 +1,5 @@
 from turtle import Turtle
+POSITION = ((0, 0), (-20, 0), (-40, 0))
 UP = 90
 DOWN = 270
 LEFT = 180
@@ -9,12 +10,8 @@ class Snake:
 
     def __init__(self):
         self.snake_list = []
-        for _ in range(3):
-            s = Turtle(shape='square')
-            s.penup()
-            s.color('white')
-            s.setposition(y=0, x=0 - _ * 20)
-            self.snake_list.append(s)
+        for pos in POSITION:
+            self.add_segment(pos)
         self.head = self.snake_list[0]
 
     def move(self):
@@ -39,4 +36,14 @@ class Snake:
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
+    def add_segment(self, pos):
+        s = Turtle(shape='square')
+        s.penup()
+        s.color('white')
+        s.setposition(pos)
+        self.snake_list.append(s)
+
+    def eat(self):
+        final_segment = self.snake_list[-1].pos()
+        self.add_segment(final_segment)
 
