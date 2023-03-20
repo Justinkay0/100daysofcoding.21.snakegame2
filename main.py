@@ -37,4 +37,8 @@ while game_state:
         score.game_over()
         game_state = False
 
+    for body in snake.snake_list[1:]:
+        if snake.head.distance(body) < 10:
+            game_state = False
+            score.game_over()
 screen.exitonclick()
