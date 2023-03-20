@@ -32,4 +32,8 @@ while game_state:
         food.refresh()
         score.scoreboard_add()
 
+    if abs(snake.head.xcor()) > 290 or abs(snake.head.ycor()) > 290:
+        score.game_over()
+        game_state = False
+
 screen.exitonclick()
